@@ -1,18 +1,15 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ShortLink.Domain;
 using ShortLink.EfCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ShortLink.EfCore.Repositories.Common;
+using ShortLink.Service.Features.Links.Commands;
 
 namespace ShortLink.WebApi
 {
@@ -39,7 +36,10 @@ namespace ShortLink.WebApi
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext"));
             });
+            services.AddMediatR(typeof(CreateShortLinkCommand));
 
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
