@@ -17,5 +17,10 @@
             ShortLink = shortLink;
             VisitCount = 0;
         }
+
+        public void SetVisitCount(long count)
+        {
+            VisitCount = count;
+        }
     }
 }

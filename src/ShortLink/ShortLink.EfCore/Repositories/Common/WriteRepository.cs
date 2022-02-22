@@ -16,7 +16,7 @@ namespace ShortLink.EfCore.Repositories.Common
             await _context.AddAsync(entity);
         }
 
-        public void UpdateAsync(TEntity entity)
+        public void Update(TEntity entity)
         {
             _context.Update(entity);
         }
