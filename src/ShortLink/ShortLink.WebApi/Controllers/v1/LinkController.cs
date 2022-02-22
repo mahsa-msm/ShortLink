@@ -25,7 +25,7 @@ namespace ShortLink.Api.Controllers.v1
             var result = await _mediator.Send(command);
             var url = _configuration.GetValue<string>("UrlSetting:Url");
 
-            return Ok(url + "/"+ result.ShortLink);
+            return Ok(url + "/api/v1/Link/" + result.ShortLink);
         }
 
         [HttpGet("{shortlink}")]
