@@ -7,9 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ShortLink.Domain;
+using ShortLink.Domain.Links.Contracts;
 using ShortLink.EfCore;
 using ShortLink.EfCore.Repositories.Common;
+using ShortLink.EfCore.Repositories.Links;
 using ShortLink.Service.Features.Links.Commands;
+using ShortLink.Service.Features.Links.Queries;
 
 namespace ShortLink.WebApi
 {
@@ -37,9 +40,12 @@ namespace ShortLink.WebApi
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext"));
             });
             services.AddMediatR(typeof(CreateShortLinkCommand));
+            services.AddMediatR(typeof(GetLinkQuery));
+            services.AddMediatR(typeof(GetVisitCountQuery));
 
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped<ILinkRepository ,LinkRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
