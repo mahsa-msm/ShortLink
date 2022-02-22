@@ -16,11 +16,6 @@ namespace ShortLink.EfCore.Repositories.Common
             await _context.AddAsync(entity);
         }
 
-        public void DeleteAsync(TEntity entity)
-        {
-            _context.Remove(entity);
-        }
-
         public void UpdateAsync(TEntity entity)
         {
             _context.Update(entity);

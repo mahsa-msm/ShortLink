@@ -6,7 +6,6 @@ namespace ShortLink.Domain
     {
         Task CreateAsync(TEntity entity);
         void UpdateAsync(TEntity entity);
-        void DeleteAsync(TEntity entity);
         Task SaveChangeAsync();
     }
 }
